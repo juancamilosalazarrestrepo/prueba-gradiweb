@@ -6,6 +6,8 @@ class ProductsCar extends Component {
         super(props);
         this.state = {
 
+            amount: props.amount
+
 
         }
     }
@@ -35,7 +37,8 @@ class ProductsCar extends Component {
 
         return (
             <div >
-                soy el carrito jajajaj
+                este es el amount
+                <p>{this.state.amount}</p>
 
 
             </div>

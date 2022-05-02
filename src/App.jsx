@@ -10,7 +10,7 @@ function App() {
 
 
         <div className='App'>
-            <Link to="/car">Car</Link>
+          
 
 
             {/* <Routes>
@@ -26,7 +26,7 @@ function App() {
 
             <ProductDetail />
 
-            <ProductsCar />
+           
 
 
 

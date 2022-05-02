@@ -10,23 +10,113 @@ class ProductDetail extends Component {
             data: {},
             nameProduct: "",
             imagesProduct: [],
-            size: "",
+            size: "7",
+            price:0,
             amount: 1,
-            color: "",
-            productInCard: []
+            color: "Rojo",
+            productInCard: [],
+            description: "",
+            totalPrice:0
 
         }
     }
 
+
+
     addToCar = () => {
 
         this.setState({
-            size: this.size,
+            size: this.state.size,
             amount: this.state.amount,
-            color: "red"
+            color: "red",
+            totalPrice: this.state.totalPrice + ((this.state.price / 100)*this.state.amount)
+
+        });
+        let saveProducts = document.querySelectorAll(".saveProducts");
+        let emptyCar = document.querySelectorAll(".emptyCar");
+
+        emptyCar.forEach((item) =>
+        item.classList.add('ocult'));
+    
+
+
+        
+        
+        
+
+        saveProducts.forEach((item) =>
+          item.innerHTML += 
+          "<span> <span  style='font-weight:700'>Producto: </span> " + this.state.nameProduct + "</span><br/>"+
+          "<span> <span style='font-weight:700'>Precio: </span> " + ((this.state.price / 100)*this.state.amount) + ".00" + "</span><br/>"+
+          "<span > <span style='font-weight:700'>Cantidad: </span> " +  this.state.amount + "</span><br/>" + 
+          "<span> <span style='font-weight:700'>Talla: </span> " +  this.state.size + "</span><br/>"+
+          "<span> <span style='font-weight:700'>Color: </span> " +  this.state.color + "</span><br/>"+
+          "<hr/>"
+          );
+
+    }
+
+    switchCar = () => {
+        let carProduct = document.querySelector('.car');
+
+        carProduct.classList.toggle('activate');
+        
+
+        
+    }
+
+    selectColorRed = () => {
+        this.setState({
+
+            color: "Rojo"
+
 
         })
 
+        let btnsColor = document.querySelectorAll(".selectBorder");
+        let btnRed =document.querySelectorAll(".selectBorderRed")
+
+        btnsColor.forEach((item) =>
+                item.classList.remove('selected'));
+
+                btnRed.forEach((item) =>
+                item.classList.add('selected'));
+    }
+
+    selectColorBlack = () => {
+        this.setState({
+
+            color: "Negro"
+
+
+        })
+
+        let btnsColor = document.querySelectorAll(".selectBorder");
+        let btnBlack =document.querySelectorAll(".selectBorderBlack")
+
+        btnsColor.forEach((item) =>
+                item.classList.remove('selected'));
+
+        btnBlack.forEach((item) =>
+                item.classList.add('selected'));
+    }
+
+    selectColorWhite = () => {
+        this.setState({
+
+            color: "Blanco"
+
+
+        })
+
+        let btnsColor = document.querySelectorAll(".selectBorder");
+        let btnWhite =document.querySelectorAll(".selectBorderWhite")
+
+        btnsColor.forEach((item) =>
+                item.classList.remove('selected'));
+
+        btnWhite.forEach((item) =>
+                item.classList.add('selected'));
     }
 
     amountIncrement = () => {
@@ -194,6 +284,8 @@ class ProductDetail extends Component {
     componentDidMount() {
         console.log("me monte");
         this.getProductInfo();
+
+        
     }
 
     getProductInfo() {
@@ -209,6 +301,7 @@ class ProductDetail extends Component {
             data: data,
             nameProduct: data.title,
             imagesProduct: data.images,
+            description: data.description,
 
             price: data.price,
             comparePrice: data.compare_at_price
@@ -229,8 +322,25 @@ class ProductDetail extends Component {
     }
     render() {
         console.log("estoy renderizando");
+
+        
+       
+        
+        
+       
+
+        
+
+        
+        
+
+        
         let sizeBtns = document.querySelectorAll('.buttonSize');
         function activeLink() {
+           
+                
+                
+            
 
             console.log(sizeBtns)
             sizeBtns.forEach((item) =>
@@ -242,18 +352,63 @@ class ProductDetail extends Component {
             item.addEventListener('click', activeLink));
 
 
+            
+
+
 
         console.log("este es el nombre" + this.state.nameProduct);
+
+        let carButtons = document.querySelectorAll('.carButtonAct');
+        
+        
+
+        let carProduct = document.querySelector('.car');
+
+     
+
+          let descriptionContainer = document.querySelectorAll('.description');
+
+          descriptionContainer.forEach((item) =>
+          item.innerHTML = this.state.description);
+
+      
+
+       
+
+        function activeCar() {
+           
+            carProduct.classList.toggle('activate');
+
+            
+
+                
+            
+
+            
+        }
         return (
             <div >
-                <div className='productContainer'>
-                    <div className='containerImage'>
-                        <span>Catalog/ Sneackers / <span className='nameRoute'>{this.state.nameProduct} </span></span>
+                 
+                 
+               
+              
 
-                        <img src={this.state.imagesProduct[0]} alt="" />
+                    
+    
+     
+                <div className='productContainer'>
+               
+                    <div className='containerImage'>
+                        <span className="route">Catalog/ Sneackers / <span className='nameRoute'>{this.state.nameProduct} </span></span>
+                        <div className="containerImg"><img src={this.state.imagesProduct[0]} alt="" /></div>
+                        <div className="btnsliderCont"><div className="btnslider selected"></div> <div className="btnslider"></div> <div className="btnslider"></div></div>
+
+                        
 
                     </div>
                     <div className='productCard'>
+                        <div className="btnCar"><button id="carButtonAct" className="carButtonAct"  onClick={this.switchCar}><ion-icon name="cart-outline"></ion-icon></button></div>
+                    
                         <p className='grayTitle'>by Nike x ALYX</p>
                         <h2 className="productName">{this.state.nameProduct}</h2>
                         <div className='prices'>
@@ -263,27 +418,25 @@ class ProductDetail extends Component {
                         <hr />
                         <div className='selectColor'>
                             <label htmlFor="">Color:</label>
-                            <label>
-                                <input className='radioRed' id='radioRed' type="radio" name="color" value="rojo" />
-                                {/* <label htmlFor="radioRed">Rojo</label> */}
-                            </label>
-                            <label>
-                                <input className='radioBlack' type="radio" name="color" value="negro" />
-                            </label>
-                            <label>
-                                <input className='radioWhite' type="radio" name="color" value="blanco" />
-                            </label>
+
+                            <div className="selectBorder selectBorderRed selected" onClick={this.selectColorRed}><div className="btnRed"></div></div>
+                            <div className="selectBorder selectBorderBlack" onClick={this.selectColorBlack}><div className="btnBlack"></div></div>
+                            <div className="selectBorder selectBorderWhite" onClick={this.selectColorWhite}><div className="btnWhite"></div></div>
+
+                            
+                           
 
 
                         </div>
                         <hr />
 
 
+                         <div className='selectSizeCont'>
+                         <label htmlFor="">Size:</label>
+                          <div className='selectSize'>
 
-                        <div className='selectSize'>
-
-                            <label htmlFor="">Size:</label>
-                            <button className='buttonSize btnSize1' value="7" onClick={this.selectSize1}>7</button>
+                            
+                            <button className='buttonSize btnSize1 active' value="7" onClick={this.selectSize1}>7</button>
                             <button className='buttonSize btnSize2' onClick={this.selectSize2}>7.5</button>
                             <button className='buttonSize btnSize3' onClick={this.selectSize3}>8</button>
                             <button className='buttonSize btnSize4' onClick={this.selectSize4}>8.5</button>
@@ -294,19 +447,22 @@ class ProductDetail extends Component {
                             <button className='buttonSize btnSize9' onClick={this.selectSize9}>11</button>
                             <button className='buttonSize btnSize10' onClick={this.selectSize10}>11.5</button>
 
+                          </div>
+
                         </div>
+                        
                         <hr />
 
                         <div className='amountPrice'>
                             <div className='amountContainer'>
-                                <button className='buttonAmount' onClick={this.amountDecrement}>-</button>
+                                <button className='buttonAmount decrement' onClick={this.amountDecrement}>-</button>
                                 <input className='amountInput' type="number" value={this.state.amount} />
-                                <button className='buttonAmount' onClick={this.amountIncrement}>+</button>
+                                <button className='buttonAmount increment' onClick={this.amountIncrement}>+</button>
                             </div>
 
                             <div className='totalPriceContainer'>
                                 <span className='priceTitle'>Total Price</span>
-                                <span className='totalPrice'>$340000</span>
+                                <span className='totalPrice'>${((this.state.price / 100)*this.state.amount) + ".00"}</span>
                             </div>
 
 
@@ -320,27 +476,71 @@ class ProductDetail extends Component {
 
                         </div>
 
+                        <div className="description"></div>
+                        
 
+
+
+                    </div>
+                    
+                    <div className="car">
+                    
+                    
+                    
+                    
+                    <h4 className="titleCar"> Tu carrito</h4>
+                    <hr />
+
+                    <span className="emptyCar">Carrito Vacio</span>
+
+                    <div className="saveProducts">
+                    
+                        
+                    </div>
+
+                    <div className="total">
+                        <hr />
+                        <h3><span>Total a pagar : </span>  ${this.state.totalPrice}.00 </h3>
+                        
 
                     </div>
 
 
+                   
+                    
+                    </div>
+
+
+
 
                 </div>
 
-                <div className='gallery'>
+                <div className="galleryContainer">
+
+                   <div className='gallery'>
+
                     <img src={this.state.imagesProduct[1]} alt="" />
                     <img src={this.state.imagesProduct[2]} alt="" />
                     <img src={this.state.imagesProduct[3]} alt="" />
 
+                   </div>
+                
+                  
+                
                 </div>
 
-                <button >Car</button>
+               
+               
+
+                
+
+                
+
+                   
+                    
 
 
-
-
-
+                
 
             </div>
 
