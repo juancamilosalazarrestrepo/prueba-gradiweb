@@ -1,3 +1,17 @@
+:root {
+
+  --blackColor: #000002;
+  --redColor: #e54b47;
+  --whiteColor: #ffffff;
+  --softGrayColor: #9a9a9a;
+  --darkGrayColor: #434242;
+  --base-font-family: 'Roboto', sans-serif
+}
+
+* {
+  color: var(--balckColor)
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +24,220 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.productContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+
+}
+
+.nameRoute {
+  font-weight: 700;
+}
+
+.containerImage {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.containerImage img {
+  width: 500px;
+  padding-left: 100px;
+}
+
+.productCard {
+  padding-left: 30px;
+}
+
+.grayTitle {
+  color: var(--softGrayColor);
+  font-size: 17px;
+  margin-bottom: -30px;
+}
+
+.productName {
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+
+.prices {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.price {
+  color: var(--blackColor);
+  font-size: 30px;
+}
+
+.real-price {
+  text-decoration: line-through;
+  color: var(--darkGrayColor);
+}
+
+.selectColor {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.radioRed {
+
+  transform: scale(1.5);
+  background: #e54b47;
+  color: #e54b47;
+}
+
+
+.selectColor input {}
+
+/* .selectColor input+label::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid gray;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-bottom: 3px;
+}
+
+.selectColor input:checked+label::before {
+
+
+  background-color: var(--redColor);
+  box-sizing: border-box;
+
+  padding: 5px;
+
+
+} */
+
+.radioBlack {
+
+  transform: scale(1.5);
+  background: #e54b47;
+  color: #e54b47;
+}
+
+.radioWhite {
+
+  transform: scale(1.5);
+  background: #e54b47;
+  color: #e54b47;
+}
+
+.selectSize {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.selectSize label {
+  color: var(--softGrayColor);
+  margin-right: 10px;
+}
+
+.buttonSize {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  border-style: none;
+  border: 1px solid var(--softGrayColor);
+  color: var(--softGrayColor);
+  text-align: center;
+
+}
+
+.buttonSize:hover {
+  border: 1px solid var(--darkGrayColor);
+  color: var(--darkGrayColor);
+
+}
+
+.amountPrice {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  align-items: center;
+}
+
+.amountInput {
+  width: 25px;
+  height: 29px;
+  border-style: none;
+  text-align: center;
+  background-color: #d8d6d6;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.buttonAmount {
+  width: 31px;
+  height: 31px;
+  border-style: none;
+  background-color: #d8d6d6;
+}
+
+.totalPriceContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.favoriteButton {
+  width: 50%;
+  background: #d8d6d6;
+  color: var(--blackColor);
+  height: 40px;
+  border-style: none;
+}
+
+.addCarButton {
+  color: var(--whiteColor);
+  background: var(--blackColor);
+  width: 50%;
+  height: 40px;
+  border-style: none;
+}
+
+.gallery {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+  padding-left: 100px;
+
+}
+
+.gallery img {
+  width: 250px;
+  height: 250px;
 }
