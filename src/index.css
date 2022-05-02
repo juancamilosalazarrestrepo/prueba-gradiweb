@@ -77,14 +77,16 @@ code {
 .price {
   color: var(--blackColor);
   font-size: 30px;
+  font-weight: 600;
 }
 
 .real-price {
   text-decoration: line-through;
-  color: var(--darkGrayColor);
+  color: var(--softGrayColor);
 }
 
 .selectColor {
+  margin-top: 20px;
   display: flex;
   margin-bottom: 20px;
   gap: 10px;
@@ -161,7 +163,8 @@ code {
 
 }
 
-.buttonSize:hover {
+.buttonSize:hover,
+.active {
   border: 1px solid var(--darkGrayColor);
   color: var(--darkGrayColor);
 
